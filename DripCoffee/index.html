@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>
+    Coffee Brewing Philosophy
+  </title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- HERO -->
+
+    <header class="hero">
+
+      <h1>
+        ☕ Coffee Brewing Philosophy
+      </h1>
+
+      <p>
+        根據豆子特性、處理法、
+        烘焙度與沖煮哲學，
+        生成建議手沖方案與沖煮分析。
+      </p>
+
+    </header>
+
+
+    <!-- FORM -->
+
+    <section class="card">
+
+      <!-- ORIGIN -->
+
+      <div class="field">
+
+        <label>
+          國家 / 產地
+        </label>
+
+        <select id="origin">
+
+          <option value="ethiopia">
+            Ethiopia
+          </option>
+
+          <option value="kenya">
+            Kenya
+          </option>
+
+          <option value="panama">
+            Panama
+          </option>
+
+          <option value="colombia">
+            Colombia
+          </option>
+
+          <option value="brazil">
+            Brazil
+          </option>
+
+          <option value="indonesia">
+            Indonesia
+          </option>
+
+          <option value="uganda">
+            Uganda
+          </option>
+
+          <option value="honduras">
+            Honduras
+          </option>
+
+          <option value="costa-rica">
+            Costa Rica
+          </option>
+
+          <option value="bolivia">
+            Bolivia
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- PROCESS -->
+
+      <div class="field">
+
+        <label>
+          處理法
+        </label>
+
+        <select id="process">
+
+          <option value="washed">
+            Washed
+          </option>
+
+          <option value="double-washed">
+            Double Washed
+          </option>
+
+          <option value="natural">
+            Natural
+          </option>
+
+          <option value="wet-hulled">
+            Wet Hulled (Giling Basah)
+          </option>
+
+          <option value="honey">
+            Honey
+          </option>
+
+          <option value="anaerobic-washed">
+            Anaerobic Washed
+          </option>
+
+          <option value="anaerobic-natural">
+            Anaerobic Natural
+          </option>
+
+          <option value="carbonic">
+            Carbonic Maceration
+          </option>
+
+          <option value="thermal-shock">
+            Thermal Shock
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- ROAST -->
+
+      <div class="field">
+
+        <label>
+          烘焙度
+        </label>
+
+        <select id="roast">
+
+          <option value="light">
+            Light Roast
+          </option>
+
+          <option value="medium">
+            Medium Roast
+          </option>
+
+          <option value="dark">
+            Dark Roast
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- BREW STYLE -->
+
+      <div class="field">
+
+        <label>
+          沖煮哲學
+        </label>
+
+        <select id="brewStyle">
+
+          <option value="japanese">
+            日系乾淨感
+          </option>
+
+          <option value="nordic">
+            北歐高萃取
+          </option>
+
+          <option value="competition">
+            競技風味爆發
+          </option>
+
+          <option value="cafe">
+            Café 平衡耐飲
+          </option>
+
+          <option value="hybrid">
+            Hybrid Modern
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- FLAVOR -->
+
+      <div class="field">
+
+        <label>
+          想突出嘅風味
+        </label>
+
+        <select id="targetFlavor">
+
+          <option value="floral">
+            花香果調
+          </option>
+
+          <option value="bright">
+            明亮酸質
+          </option>
+
+          <option value="balanced">
+            圓潤平衡
+          </option>
+
+          <option value="nutty">
+            朱古力堅果
+          </option>
+
+          <option value="syrupy">
+            醇厚焦糖
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- BUTTON -->
+
+      <button id="brewBtn">
+
+        Generate Recipe
+
+      </button>
+
+    </section>
+
+
+    <!-- RESULT -->
+
+    <section class="result-card">
+
+      <!-- WARNING -->
+
+      <div id="warning"></div>
+
+
+      <!-- RECIPE -->
+
+      <div id="result">
+
+        <div class="placeholder">
+
+          選擇條件後生成沖煮方案
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
