@@ -1,1010 +1,970 @@
 // ========================================
-// Coffee Knowledge Base
+// Green Door Coffee
 // data.js
+// Full Coffee Database
 // ========================================
 
+const coffees = [
 
+  // ======================================
+  // FILTER / POUR OVER
+  // ======================================
 
-// ========================================
-// ORIGINS
-// ========================================
+  {
+    id: "bolivia-alasitas-geisha",
+    type: "filter",
 
-const origins = {
+    shortName:
+      "Bolivia Alasitas Geisha",
 
-  ethiopia: {
+    fullName:
+      "Bolivia Caranavi Alasitas – Geisha Pink Honey Lot 24",
 
-    name: "Ethiopia",
+    origin:
+      "Bolivia",
+
+    process:
+      "Pink Honey",
+
+    roast:
+      "Light Roast",
 
     notes: [
-      "Floral",
-      "Citrus",
-      "Tea-like"
+      "Floral aromatics",
+      "Elegant acidity",
+      "Tea-like finish"
     ],
 
-    analysis: `
-      Ethiopian coffees are often
-      high-density, floral and elegant.
-
-      High-grown regions such as
-      Yirgacheffe and Guji usually
-      perform well under higher extraction.
-    `,
-
-    profile: {
-      acidity: 9,
-      sweetness: 8,
-      body: 3,
-      clarity: 9,
-      funkiness: 4
-    },
-
-    commonProcesses: [
-      "washed",
-      "natural",
-      "anaerobic-natural"
-    ]
-
+    brewBias: {
+      temp: 92,
+      ratio: "1:16",
+      grind:
+        "Between table salt and white sugar",
+      flow:
+        "Gentle",
+      pours: [
+        {
+          title:
+            "Bloom Saturation",
+          amount:
+            "50ml",
+          timing:
+            "0:00 – 0:40",
+          note:
+            "Minimal agitation for floral clarity."
+        },
+        {
+          title:
+            "Main Extraction",
+          amount:
+            "100ml",
+          timing:
+            "0:40 – 1:20",
+          note:
+            "Stable centre pour."
+        },
+        {
+          title:
+            "Sweetness Development",
+          amount:
+            "100ml",
+          timing:
+            "1:20 – 2:00",
+          note:
+            "Maintain gentle turbulence."
+        },
+        {
+          title:
+            "Finishing Pour",
+          amount:
+            "100ml",
+          timing:
+            "2:00 – 2:40",
+          note:
+            "Lower agitation for clean finish."
+        }
+      ]
+    }
   },
 
 
 
-  kenya: {
+  {
+    id: "colombia-camenzo",
+    type: "filter",
 
-    name: "Kenya",
+    shortName:
+      "Colombia Camenzo",
+
+    fullName:
+      "Colombia Timaná Camenzo Community – Aerobic Washed Caturra",
+
+    origin:
+      "Colombia",
+
+    process:
+      "Aerobic Washed",
+
+    roast:
+      "Light Roast",
 
     notes: [
-      "Berry",
-      "Juicy",
-      "Bright"
+      "Balanced sweetness",
+      "Red fruit acidity",
+      "Clean structure"
     ],
 
-    analysis: `
-      Kenyan coffees typically show
-      vibrant acidity and juicy structure.
-
-      Washed processing is dominant
-      and often pairs well with
-      higher extraction brewing styles.
-    `,
-
-    profile: {
-      acidity: 10,
-      sweetness: 7,
-      body: 5,
-      clarity: 8,
-      funkiness: 2
-    },
-
-    commonProcesses: [
-      "washed",
-      "double-washed"
-    ]
-
+    brewBias: {
+      temp: 93,
+      ratio: "1:16",
+      grind:
+        "White sugar-like",
+      flow:
+        "Medium gentle",
+      pours: [
+        {
+          title:
+            "Bloom",
+          amount:
+            "50ml",
+          timing:
+            "0:00 – 0:35",
+          note:
+            "Even saturation."
+        },
+        {
+          title:
+            "Main Pour",
+          amount:
+            "120ml",
+          timing:
+            "0:35 – 1:15",
+          note:
+            "Maintain stable flow."
+        },
+        {
+          title:
+            "Sweet Finish",
+          amount:
+            "120ml",
+          timing:
+            "1:15 – 2:00",
+          note:
+            "Reduce turbulence near finish."
+        }
+      ]
+    }
   },
 
 
 
-  panama: {
+  {
+    id: "costa-rica-el-mango",
+    type: "filter",
 
-    name: "Panama",
+    shortName:
+      "Costa Rica El Mango",
+
+    fullName:
+      "Costa Rica Brunca Rivense El Mango – Passion Honey",
+
+    origin:
+      "Costa Rica",
+
+    process:
+      "Passion Honey",
+
+    roast:
+      "Light Roast",
 
     notes: [
-      "Jasmine",
-      "Stone Fruit",
-      "Elegant"
+      "Tropical sweetness",
+      "Round mouthfeel",
+      "Honey texture"
     ],
 
-    analysis: `
-      Panama is famous for highly aromatic
-      coffees with exceptional clarity.
-
-      Modern fermentation techniques
-      are commonly used in competition-level lots.
-    `,
-
-    profile: {
-      acidity: 8,
-      sweetness: 9,
-      body: 4,
-      clarity: 10,
-      funkiness: 5
-    },
-
-    commonProcesses: [
-      "washed",
-      "anaerobic-natural",
-      "carbonic",
-      "thermal-shock"
-    ]
-
+    brewBias: {
+      temp: 91,
+      ratio: "1:15.5",
+      grind:
+        "White sugar-like",
+      flow:
+        "Medium",
+      pours: [
+        {
+          title:
+            "Controlled Bloom",
+          amount:
+            "50ml",
+          timing:
+            "0:00 – 0:35",
+          note:
+            "Reduce aggressive turbulence."
+        },
+        {
+          title:
+            "Sweetness Extraction",
+          amount:
+            "120ml",
+          timing:
+            "0:35 – 1:15",
+          note:
+            "Maintain stable bed."
+        },
+        {
+          title:
+            "Body Development",
+          amount:
+            "100ml",
+          timing:
+            "1:15 – 1:55",
+          note:
+            "Gentle finish."
+        }
+      ]
+    }
   },
 
 
 
-  colombia: {
+  {
+    id: "don-mayo-anaerobic",
+    type: "filter",
 
-    name: "Colombia",
+    shortName:
+      "Don Mayo Anaerobic",
+
+    fullName:
+      "Costa Rica Tarrazu Don Mayo Bella Vista Micro Lot Anaerobic Natural",
+
+    origin:
+      "Costa Rica",
+
+    process:
+      "Anaerobic Natural",
+
+    roast:
+      "Light Roast",
 
     notes: [
-      "Balanced",
-      "Caramel",
-      "Red Fruit"
+      "Fermented fruit",
+      "Heavy sweetness",
+      "Dense body"
     ],
 
-    analysis: `
-      Colombian coffees are often sweet,
-      balanced and versatile.
-
-      Recent experimental fermentation
-      styles are increasingly popular.
-    `,
-
-    profile: {
-      acidity: 7,
-      sweetness: 8,
-      body: 6,
-      clarity: 7,
-      funkiness: 5
-    },
-
-    commonProcesses: [
-      "washed",
-      "honey",
-      "anaerobic-washed"
-    ]
-
+    brewBias: {
+      temp: 90,
+      ratio: "1:15",
+      grind:
+        "Between white sugar and coarse sugar",
+      flow:
+        "Low agitation",
+      pours: [
+        {
+          title:
+            "Bloom",
+          amount:
+            "50ml",
+          timing:
+            "0:00 – 0:30",
+          note:
+            "Reduce turbulence."
+        },
+        {
+          title:
+            "Main Extraction",
+          amount:
+            "120ml",
+          timing:
+            "0:30 – 1:10",
+          note:
+            "Stable water level."
+        },
+        {
+          title:
+            "Texture Development",
+          amount:
+            "100ml",
+          timing:
+            "1:10 – 1:50",
+          note:
+            "Slow controlled finish."
+        }
+      ]
+    }
   },
 
 
 
-  brazil: {
+  {
+    id: "pacamara-washed",
+    type: "filter",
 
-    name: "Brazil",
+    shortName:
+      "Santa Elena Pacamara",
+
+    fullName:
+      "El Salvador Finca Santa Elena Pacamara Washed",
+
+    origin:
+      "El Salvador",
+
+    process:
+      "Washed",
+
+    roast:
+      "Light Roast",
 
     notes: [
-      "Chocolate",
-      "Nutty",
-      "Low Acidity"
+      "Creamy body",
+      "Stone fruit",
+      "Structured sweetness"
     ],
 
-    analysis: `
-      Brazilian coffees usually emphasize
-      sweetness, body and comfort.
-
-      Lower acidity coffees often benefit
-      from balanced extraction approaches.
-    `,
-
-    profile: {
-      acidity: 3,
-      sweetness: 7,
-      body: 8,
-      clarity: 4,
-      funkiness: 2
-    },
-
-    commonProcesses: [
-      "natural",
-      "honey"
-    ]
-
+    brewBias: {
+      temp: 92,
+      ratio: "1:15.5",
+      grind:
+        "White sugar-like",
+      flow:
+        "Medium gentle",
+      pours: [
+        {
+          title:
+            "Bloom",
+          amount:
+            "60ml",
+          timing:
+            "0:00 – 0:40",
+          note:
+            "Encourage even extraction."
+        },
+        {
+          title:
+            "Main Pour",
+          amount:
+            "120ml",
+          timing:
+            "0:40 – 1:20",
+          note:
+            "Balanced agitation."
+        },
+        {
+          title:
+            "Sweet Finish",
+          amount:
+            "100ml",
+          timing:
+            "1:20 – 2:00",
+          note:
+            "Preserve creamy finish."
+        }
+      ]
+    }
   },
 
 
 
-  indonesia: {
+  {
+    id: "ethiopia-chelbesa",
+    type: "filter",
 
-    name: "Indonesia",
+    shortName:
+      "Chelbesa Washed",
+
+    fullName:
+      "Ethiopia Gedeo Yirgacheffe Gedeb Chelbesa Premium G1 Washed",
+
+    origin:
+      "Ethiopia",
+
+    process:
+      "Washed",
+
+    roast:
+      "Light Roast",
 
     notes: [
-      "Earthy",
-      "Spice",
-      "Heavy Body"
+      "Jasmine florals",
+      "Citrus acidity",
+      "Tea-like finish"
     ],
 
-    analysis: `
-      Indonesian coffees often present
-      syrupy body and earthy character.
-
-      Wet Hulled processing creates
-      dense texture and lower clarity.
-    `,
-
-    profile: {
-      acidity: 2,
-      sweetness: 6,
-      body: 10,
-      clarity: 2,
-      funkiness: 5
-    },
-
-    commonProcesses: [
-      "wet-hulled",
-      "natural"
-    ]
-
+    brewBias: {
+      temp: 93,
+      ratio: "1:16.5",
+      grind:
+        "White sugar-like",
+      flow:
+        "Gentle",
+      pours: [
+        {
+          title:
+            "Extended Bloom",
+          amount:
+            "60ml",
+          timing:
+            "0:00 – 0:45",
+          note:
+            "Promote clarity development."
+        },
+        {
+          title:
+            "Main Extraction",
+          amount:
+            "120ml",
+          timing:
+            "0:45 – 1:25",
+          note:
+            "Stable centre pour."
+        },
+        {
+          title:
+            "Clarity Finish",
+          amount:
+            "120ml",
+          timing:
+            "1:25 – 2:05",
+          note:
+            "Low turbulence finish."
+        }
+      ]
+    }
   },
 
 
 
-  uganda: {
+  {
+    id: "gerbicho-anaerobic",
+    type: "filter",
 
-    name: "Uganda",
+    shortName:
+      "Gerbicho Anaerobic",
+
+    fullName:
+      "Ethiopia Guji Gerbicho Rogicha Grade 1 Anaerobic Natural",
+
+    origin:
+      "Ethiopia",
+
+    process:
+      "Anaerobic Natural",
+
+    roast:
+      "Light Roast",
 
     notes: [
-      "Dark Fruit",
-      "Chocolate",
-      "Dense"
+      "Fermented berry",
+      "Dense sweetness",
+      "Wine-like body"
     ],
 
-    analysis: `
-      Ugandan coffees can show
-      deep sweetness and dense body.
-
-      Natural processing is becoming
-      increasingly common in specialty lots.
-    `,
-
-    profile: {
-      acidity: 5,
-      sweetness: 7,
-      body: 7,
-      clarity: 5,
-      funkiness: 4
-    },
-
-    commonProcesses: [
-      "washed",
-      "natural"
-    ]
-
+    brewBias: {
+      temp: 90,
+      ratio: "1:15",
+      grind:
+        "White sugar-like",
+      flow:
+        "Low agitation",
+      pours: [
+        {
+          title:
+            "Controlled Bloom",
+          amount:
+            "50ml",
+          timing:
+            "0:00 – 0:35",
+          note:
+            "Avoid excessive turbulence."
+        },
+        {
+          title:
+            "Sweetness Extraction",
+          amount:
+            "100ml",
+          timing:
+            "0:35 – 1:10",
+          note:
+            "Stable extraction."
+        },
+        {
+          title:
+            "Body Development",
+          amount:
+            "100ml",
+          timing:
+            "1:10 – 1:50",
+          note:
+            "Slow syrupy finish."
+        }
+      ]
+    }
   },
 
 
 
-  honduras: {
+  {
+    id: "edido-natural",
+    type: "filter",
 
-    name: "Honduras",
+    shortName:
+      "Edido Natural",
+
+    fullName:
+      "Ethiopia Yirgacheffe Edido Alemayehu Gosaye Gobena G1 Natural",
+
+    origin:
+      "Ethiopia",
+
+    process:
+      "Natural",
+
+    roast:
+      "Light Roast",
 
     notes: [
-      "Brown Sugar",
-      "Stone Fruit",
-      "Balanced"
+      "Blueberry sweetness",
+      "Juicy acidity",
+      "Silky texture"
     ],
 
-    analysis: `
-      Honduran coffees often balance
-      sweetness and approachable acidity.
-
-      Honey and natural processes
-      are increasingly common.
-    `,
-
-    profile: {
-      acidity: 6,
-      sweetness: 8,
-      body: 6,
-      clarity: 6,
-      funkiness: 4
-    },
-
-    commonProcesses: [
-      "washed",
-      "natural",
-      "honey"
-    ]
-
+    brewBias: {
+      temp: 91,
+      ratio: "1:15.5",
+      grind:
+        "Between white sugar and coarse sugar",
+      flow:
+        "Medium gentle",
+      pours: [
+        {
+          title:
+            "Bloom",
+          amount:
+            "50ml",
+          timing:
+            "0:00 – 0:35",
+          note:
+            "Even saturation."
+        },
+        {
+          title:
+            "Fruit Development",
+          amount:
+            "120ml",
+          timing:
+            "0:35 – 1:15",
+          note:
+            "Gentle circular pour."
+        },
+        {
+          title:
+            "Sweet Finish",
+          amount:
+            "100ml",
+          timing:
+            "1:15 – 1:55",
+          note:
+            "Lower pour height."
+        }
+      ]
+    }
   },
 
 
 
-  "costa-rica": {
+  {
+    id: "elida-natural",
+    type: "filter",
 
-    name: "Costa Rica",
+    shortName:
+      "Elida Natural #44",
+
+    fullName:
+      "Panama Boquete Elida Natural Catuai #44",
+
+    origin:
+      "Panama",
+
+    process:
+      "Natural",
+
+    roast:
+      "Light Roast",
 
     notes: [
-      "Sweet",
-      "Clean",
-      "Bright"
+      "Berry sweetness",
+      "Elegant body",
+      "Structured acidity"
     ],
 
-    analysis: `
-      Costa Rican coffees are known for
-      clean sweetness and structured acidity.
-
-      Honey process is especially iconic.
-    `,
-
-    profile: {
-      acidity: 7,
-      sweetness: 8,
-      body: 5,
-      clarity: 8,
-      funkiness: 4
-    },
-
-    commonProcesses: [
-      "washed",
-      "honey",
-      "anaerobic-washed"
-    ]
-
+    brewBias: {
+      temp: 91,
+      ratio: "1:15.5",
+      grind:
+        "Between white sugar and coarse sugar",
+      flow:
+        "Gentle",
+      pours: [
+        {
+          title:
+            "Bloom",
+          amount:
+            "50ml",
+          timing:
+            "0:00 – 0:35",
+          note:
+            "Even saturation."
+        },
+        {
+          title:
+            "Fruit Layering",
+          amount:
+            "120ml",
+          timing:
+            "0:35 – 1:15",
+          note:
+            "Smooth spiral pour."
+        },
+        {
+          title:
+            "Sweet Finish",
+          amount:
+            "100ml",
+          timing:
+            "1:15 – 1:55",
+          note:
+            "Reduce turbulence."
+        }
+      ]
+    }
   },
 
 
 
-  bolivia: {
+  {
+    id: "hartmann-maragogipe",
+    type: "filter",
 
-    name: "Bolivia",
+    shortName:
+      "Hartmann Maragogipe",
+
+    fullName:
+      "Panama Hartmann Estate Maragogipe Natural",
+
+    origin:
+      "Panama",
+
+    process:
+      "Natural",
+
+    roast:
+      "Light Roast",
 
     notes: [
-      "Tea-like",
-      "Elegant",
-      "Soft Citrus"
+      "Large structure",
+      "Sweet herbal finish",
+      "Elegant texture"
     ],
 
-    analysis: `
-      Bolivian coffees are often delicate,
-      elegant and tea-like.
+    brewBias: {
+      temp: 91,
+      ratio: "1:15.5",
+      grind:
+        "Between white sugar and coarse sugar",
+      flow:
+        "Medium gentle",
+      pours: [
+        {
+          title:
+            "Bloom",
+          amount:
+            "60ml",
+          timing:
+            "0:00 – 0:40",
+          note:
+            "Promote even saturation."
+        },
+        {
+          title:
+            "Main Pour",
+          amount:
+            "120ml",
+          timing:
+            "0:40 – 1:20",
+          note:
+            "Stable extraction flow."
+        },
+        {
+          title:
+            "Finish",
+          amount:
+            "100ml",
+          timing:
+            "1:20 – 2:00",
+          note:
+            "Gentle final extraction."
+        }
+      ]
+    }
+  },
 
-      Lower agitation brewing styles
-      can help preserve subtle aromatics.
-    `,
 
-    profile: {
-      acidity: 6,
-      sweetness: 7,
-      body: 5,
-      clarity: 8,
-      funkiness: 3
-    },
 
-    commonProcesses: [
-      "washed",
-      "natural"
-    ]
+  {
+    id: "peru-geisha-inca",
+    type: "filter",
 
+    shortName:
+      "Peru Geisha Inca",
+
+    fullName:
+      "Peru Cusco Cedrobamba Finca Basul Crispin – Geisha Inca Washed",
+
+    origin:
+      "Peru",
+
+    process:
+      "Washed",
+
+    roast:
+      "Light Roast",
+
+    notes: [
+      "Delicate florals",
+      "Silky sweetness",
+      "Transparent cup"
+    ],
+
+    brewBias: {
+      temp: 93,
+      ratio: "1:16.5",
+      grind:
+        "White sugar-like",
+      flow:
+        "Gentle",
+      pours: [
+        {
+          title:
+            "Extended Bloom",
+          amount:
+            "60ml",
+          timing:
+            "0:00 – 0:45",
+          note:
+            "Promote aromatic release."
+        },
+        {
+          title:
+            "Main Extraction",
+          amount:
+            "120ml",
+          timing:
+            "0:45 – 1:25",
+          note:
+            "Stable centre flow."
+        },
+        {
+          title:
+            "Clarity Finish",
+          amount:
+            "120ml",
+          timing:
+            "1:25 – 2:05",
+          note:
+            "Reduce turbulence."
+        }
+      ]
+    }
+  },
+
+
+
+  {
+    id: "rwanda-shyira-natural",
+    type: "filter",
+
+    shortName:
+      "Rwanda Shyira Natural",
+
+    fullName:
+      "Rwanda NPR Nyabihu Shyira A1 Natural",
+
+    origin:
+      "Rwanda",
+
+    process:
+      "Natural",
+
+    roast:
+      "Light Roast",
+
+    notes: [
+      "Dark berry",
+      "Juicy sweetness",
+      "Round acidity"
+    ],
+
+    brewBias: {
+      temp: 91,
+      ratio: "1:15.5",
+      grind:
+        "Between white sugar and coarse sugar",
+      flow:
+        "Medium gentle",
+      pours: [
+        {
+          title:
+            "Bloom",
+          amount:
+            "50ml",
+          timing:
+            "0:00 – 0:35",
+          note:
+            "Stable saturation."
+        },
+        {
+          title:
+            "Main Extraction",
+          amount:
+            "120ml",
+          timing:
+            "0:35 – 1:15",
+          note:
+            "Smooth flow control."
+        },
+        {
+          title:
+            "Sweet Finish",
+          amount:
+            "100ml",
+          timing:
+            "1:15 – 1:55",
+          note:
+            "Maintain sweetness."
+        }
+      ]
+    }
+  },
+
+
+
+  // ======================================
+  // ESPRESSO
+  // ======================================
+
+  {
+    id: "brazil-a37",
+    type: "espresso",
+
+    shortName:
+      "Brazil A37 Tobacco",
+
+    fullName:
+      "Brazil Ipanema Premier Cru Black A37 TOBACCO",
+
+    origin:
+      "Brazil",
+
+    process:
+      "Dried On The Tree",
+
+    roast:
+      "Medium Roast",
+
+    notes: [
+      "Dark chocolate",
+      "Tobacco sweetness",
+      "Heavy crema"
+    ],
+
+    brewBias: {
+      ratio:
+        "1:2",
+      grind:
+        "Table salt-like",
+      temp:
+        "93°C",
+      shotTime:
+        "28 – 32 seconds"
+    }
+  },
+
+
+
+  {
+    id: "colombia-decaf",
+    type: "espresso",
+
+    shortName:
+      "Colombia Decaf",
+
+    fullName:
+      "Colombia Decaffeinated Coffee EA Processed",
+
+    origin:
+      "Colombia",
+
+    process:
+      "EA Decaf",
+
+    roast:
+      "Medium Roast",
+
+    notes: [
+      "Soft sweetness",
+      "Low bitterness",
+      "Balanced finish"
+    ],
+
+    brewBias: {
+      ratio:
+        "1:2.1",
+      grind:
+        "Fine table salt-like",
+      temp:
+        "92°C",
+      shotTime:
+        "27 – 31 seconds"
+    }
+  },
+
+
+
+  {
+    id: "espresso-blend",
+    type: "espresso",
+
+    shortName:
+      "Espresso Blend",
+
+    fullName:
+      "Guatemala + Costa Rica + Brazil Blend",
+
+    origin:
+      "Blend",
+
+    process:
+      "Mixed Washed / Natural",
+
+    roast:
+      "Medium Roast",
+
+    notes: [
+      "Chocolate sweetness",
+      "Balanced acidity",
+      "Milk-friendly"
+    ],
+
+    brewBias: {
+      ratio:
+        "1:2.2",
+      grind:
+        "Fine table salt-like",
+      temp:
+        "92°C",
+      shotTime:
+        "27 – 30 seconds"
+    }
   }
 
-};
-
-
-
-// ========================================
-// PROCESSES
-// ========================================
-
-const processes = {
-
-  washed: {
-
-    name: "Washed",
-
-    analysis: `
-      Washed coffees usually emphasize
-      clarity, acidity and clean finish.
-
-      They generally tolerate
-      higher extraction strategies well.
-    `,
-
-    modifiers: {
-      clarity: 3,
-      sweetness: 1,
-      funkiness: -2
-    },
-
-    brewAdjustments: {
-      temp: 1,
-      agitation: 1
-    }
-
-  },
-
-
-
-  "double-washed": {
-
-    name: "Double Washed",
-
-    analysis: `
-      Double Washed coffees often show
-      extra cleanliness and transparency.
-
-      Over-extraction may reduce sweetness.
-    `,
-
-    modifiers: {
-      clarity: 4,
-      sweetness: 0,
-      funkiness: -3
-    },
-
-    brewAdjustments: {
-      temp: 2,
-      agitation: 0
-    }
-
-  },
-
-
-
-  natural: {
-
-    name: "Natural",
-
-    analysis: `
-      Natural coffees usually increase
-      fruit intensity, sweetness and body.
-
-      Excessive agitation may create muddiness.
-    `,
-
-    modifiers: {
-      sweetness: 3,
-      body: 2,
-      funkiness: 3
-    },
-
-    brewAdjustments: {
-      temp: -1,
-      agitation: -1
-    }
-
-  },
-
-
-
-  honey: {
-
-    name: "Honey",
-
-    analysis: `
-      Honey processing often creates
-      rounded sweetness and smooth texture.
-
-      Balanced extraction usually works well.
-    `,
-
-    modifiers: {
-      sweetness: 3,
-      body: 1,
-      clarity: 1
-    },
-
-    brewAdjustments: {
-      temp: 0,
-      agitation: 0
-    }
-
-  },
-
-
-
-  "wet-hulled": {
-
-    name: "Wet Hulled (Giling Basah)",
-
-    analysis: `
-      Wet Hulled coffees often show
-      earthy, spicy and syrupy character.
-
-      Lower temperature and lower agitation
-      help reduce muddy texture.
-    `,
-
-    modifiers: {
-      body: 5,
-      clarity: -3,
-      funkiness: 2
-    },
-
-    brewAdjustments: {
-      temp: -2,
-      agitation: -1
-    }
-
-  },
-
-
-
-  "anaerobic-washed": {
-
-    name: "Anaerobic Washed",
-
-    analysis: `
-      Anaerobic Washed coffees often
-      increase sweetness and fermentation complexity.
-
-      Over-extraction may exaggerate alcohol notes.
-    `,
-
-    modifiers: {
-      sweetness: 4,
-      funkiness: 5,
-      acidity: 2
-    },
-
-    brewAdjustments: {
-      temp: -1,
-      agitation: -2
-    }
-
-  },
-
-
-
-  "anaerobic-natural": {
-
-    name: "Anaerobic Natural",
-
-    analysis: `
-      Anaerobic Natural coffees can become
-      extremely fruit-forward and intense.
-
-      Gentle extraction helps preserve balance.
-    `,
-
-    modifiers: {
-      sweetness: 5,
-      funkiness: 6,
-      body: 2
-    },
-
-    brewAdjustments: {
-      temp: -2,
-      agitation: -2
-    }
-
-  },
-
-
-
-  carbonic: {
-
-    name: "Carbonic Maceration",
-
-    analysis: `
-      Carbonic Maceration often produces
-      explosive aromatics and juicy acidity.
-
-      Excessive extraction may flatten aroma separation.
-    `,
-
-    modifiers: {
-      sweetness: 5,
-      funkiness: 7,
-      clarity: 2
-    },
-
-    brewAdjustments: {
-      temp: -1,
-      agitation: -1
-    }
-
-  },
-
-
-
-  "thermal-shock": {
-
-    name: "Thermal Shock",
-
-    analysis: `
-      Thermal Shock processing often enhances
-      aroma clarity and sweetness intensity.
-
-      Cleaner brewing approaches
-      usually perform best.
-    `,
-
-    modifiers: {
-      sweetness: 4,
-      clarity: 3,
-      aroma: 5
-    },
-
-    brewAdjustments: {
-      temp: 1,
-      agitation: 0
-    }
-
-  }
-
-};
-
-
-
-// ========================================
-// BREW PHILOSOPHIES
-// ========================================
-
-const brewStyles = {
-
-  japanese: {
-
-    name: "Japanese Clean Cup",
-
-    philosophy: `
-      Focus on clarity,
-      delicate mouthfeel
-      and transparent sweetness.
-    `,
-
-    intent: [
-      "Increase clarity",
-      "Reduce agitation",
-      "Preserve tea-like finish"
-    ],
-
-    adjustments: {
-      temp: -1,
-      agitation: -2,
-      ratio: "1:16"
-    },
-
-    pours: [
-
-      {
-        en: "Bloom",
-        zh: "悶蒸",
-        water: "40g",
-        time: "0:00 - 0:30"
-      },
-
-      {
-        en: "Center Pour",
-        zh: "中心注水",
-        water: "120g",
-        time: "0:30 - 0:50"
-      },
-
-      {
-        en: "Gentle Pulse Pour",
-        zh: "輕柔分段注水",
-        water: "200g",
-        time: "1:00 - 1:20"
-      },
-
-      {
-        en: "Final Pour",
-        zh: "尾段注水",
-        water: "300g",
-        time: "1:30 - 1:50"
-      }
-
-    ]
-
-  },
-
-
-
-  nordic: {
-
-    name: "Nordic High Extraction",
-
-    philosophy: `
-      Push extraction while preserving
-      vibrant acidity and juicy sweetness.
-    `,
-
-    intent: [
-      "Increase extraction",
-      "Enhance acidity",
-      "Maximize sweetness"
-    ],
-
-    adjustments: {
-      temp: 2,
-      agitation: 2,
-      ratio: "1:15"
-    },
-
-    pours: [
-
-      {
-        en: "Bloom",
-        zh: "悶蒸",
-        water: "50g",
-        time: "0:00 - 0:45"
-      },
-
-      {
-        en: "Fast Center Pour",
-        zh: "快速中心注水",
-        water: "180g",
-        time: "0:45 - 1:10"
-      },
-
-      {
-        en: "Final Extraction Pour",
-        zh: "尾段萃取注水",
-        water: "320g",
-        time: "1:20 - 1:45"
-      }
-
-    ]
-
-  },
-
-
-
-  competition: {
-
-    name: "Competition Style",
-
-    philosophy: `
-      Maximize complexity,
-      sweetness layering
-      and flavor separation.
-    `,
-
-    intent: [
-      "Maximize flavor complexity",
-      "Increase sweetness",
-      "Control extraction curve"
-    ],
-
-    adjustments: {
-      temp: 1,
-      agitation: 1,
-      ratio: "1:15"
-    },
-
-    pours: [
-
-      {
-        en: "Bloom",
-        zh: "悶蒸",
-        water: "60g",
-        time: "0:00 - 0:40"
-      },
-
-      {
-        en: "Pulse Pour",
-        zh: "分段注水",
-        water: "140g",
-        time: "0:40 - 1:00"
-      },
-
-      {
-        en: "Pulse Pour",
-        zh: "分段注水",
-        water: "220g",
-        time: "1:00 - 1:20"
-      },
-
-      {
-        en: "Pulse Pour",
-        zh: "分段注水",
-        water: "280g",
-        time: "1:20 - 1:40"
-      },
-
-      {
-        en: "Bypass",
-        zh: "稀釋注水",
-        water: "40g",
-        time: "After Drawdown"
-      }
-
-    ]
-
-  },
-
-
-
-  cafe: {
-
-    name: "Cafe Balance",
-
-    philosophy: `
-      Prioritize sweetness,
-      comfort and everyday drinkability.
-    `,
-
-    intent: [
-      "Maintain balance",
-      "Increase sweetness",
-      "Improve consistency"
-    ],
-
-    adjustments: {
-      temp: 0,
-      agitation: 0,
-      ratio: "1:15.5"
-    },
-
-    pours: [
-
-      {
-        en: "Bloom",
-        zh: "悶蒸",
-        water: "40g",
-        time: "0:00 - 0:30"
-      },
-
-      {
-        en: "Main Pour",
-        zh: "主段注水",
-        water: "150g",
-        time: "0:30 - 0:55"
-      },
-
-      {
-        en: "Final Pour",
-        zh: "尾段注水",
-        water: "300g",
-        time: "1:10 - 1:40"
-      }
-
-    ]
-
-  },
-
-
-
-  hybrid: {
-
-    name: "Hybrid Modern",
-
-    philosophy: `
-      Blend clarity,
-      sweetness and modern extraction styles.
-    `,
-
-    intent: [
-      "Balance clarity and body",
-      "Control fermentation",
-      "Enhance sweetness"
-    ],
-
-    adjustments: {
-      temp: 1,
-      agitation: 0,
-      ratio: "1:15.5"
-    },
-
-    pours: [
-
-      {
-        en: "Bloom",
-        zh: "悶蒸",
-        water: "50g",
-        time: "0:00 - 0:40"
-      },
-
-      {
-        en: "Center Pour",
-        zh: "中心注水",
-        water: "160g",
-        time: "0:40 - 1:00"
-      },
-
-      {
-        en: "Gentle Spiral Pour",
-        zh: "柔和繞圈注水",
-        water: "260g",
-        time: "1:00 - 1:30"
-      },
-
-      {
-        en: "Bypass",
-        zh: "稀釋注水",
-        water: "30g",
-        time: "After Drawdown"
-      }
-
-    ]
-
-  }
-
-};
-
-
-
-// ========================================
-// FLAVOR TARGETS
-// ========================================
-
-const flavorTargets = {
-
-  floral: {
-
-    name: "花香果調",
-
-    intent: [
-      "Increase clarity",
-      "Highlight floral aroma",
-      "Enhance delicate acidity"
-    ],
-
-    adjustments: {
-      temp: 1,
-      grind: "Fine",
-      ratio: "1:15"
-    }
-
-  },
-
-
-
-  bright: {
-
-    name: "明亮酸質",
-
-    intent: [
-      "Increase acidity",
-      "Enhance juicy structure",
-      "Maintain clean finish"
-    ],
-
-    adjustments: {
-      temp: 2,
-      grind: "Medium Fine",
-      ratio: "1:15"
-    }
-
-  },
-
-
-
-  balanced: {
-
-    name: "圓潤平衡",
-
-    intent: [
-      "Balance sweetness and acidity",
-      "Maintain comfort",
-      "Improve drinkability"
-    ],
-
-    adjustments: {
-      temp: 0,
-      grind: "Medium",
-      ratio: "1:15.5"
-    }
-
-  },
-
-
-
-  nutty: {
-
-    name: "朱古力堅果",
-
-    intent: [
-      "Increase body",
-      "Reduce acidity",
-      "Enhance chocolate sweetness"
-    ],
-
-    adjustments: {
-      temp: -1,
-      grind: "Medium Coarse",
-      ratio: "1:16"
-    }
-
-  },
-
-
-
-  syrupy: {
-
-    name: "醇厚焦糖",
-
-    intent: [
-      "Increase syrupy texture",
-      "Enhance caramel sweetness",
-      "Reduce sharp acidity"
-    ],
-
-    adjustments: {
-      temp: -2,
-      grind: "Coarse",
-      ratio: "1:16.5"
-    }
-
-  }
-
-};
+];

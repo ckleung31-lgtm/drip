@@ -1,518 +1,759 @@
 // ========================================
-// Coffee Brewing Philosophy
+// Green Door Coffee
 // app.js
+// Dynamic Brewing Engine
 // ========================================
 
+const brewType =
+  document.getElementById("brewType");
 
-const brewBtn = document.getElementById("brewBtn");
+const coffeeSelect =
+  document.getElementById("coffeeSelect");
 
-brewBtn.addEventListener("click", generateRecipe);
+const flavorSelect =
+  document.getElementById("flavorSelect");
+
+const generateBtn =
+  document.getElementById("generateBtn");
+
+const result =
+  document.getElementById("result");
 
 
 // ========================================
-// MAIN
+// INIT
 // ========================================
 
-function generateRecipe(){
+populateCoffees();
+generateRecipe();
 
-  const originKey =
-    document.getElementById("origin").value;
+brewType.addEventListener(
+  "change",
+  () => {
 
-  const processKey =
-    document.getElementById("process").value;
-
-  const roast =
-    document.getElementById("roast").value;
-
-  const brewStyleKey =
-    document.getElementById("brewStyle").value;
-
-  const flavorKey =
-    document.getElementById("targetFlavor").value;
-
-
-  const origin =
-    origins[originKey];
-
-  const process =
-    processes[processKey];
-
-  const brewStyle =
-    brewStyles[brewStyleKey];
-
-  const flavor =
-    flavorTargets[flavorKey];
-
-
-  // ========================================
-  // BASE RECIPE
-  // ========================================
-
-  let waterTemp = 92;
-  let ratio = "1:15";
-  let grind = "Medium Fine";
-
-
-  // ========================================
-  // ROAST ADJUSTMENT
-  // ========================================
-
-  if(roast === "light"){
-    waterTemp += 2;
-    grind = "Medium Fine";
-  }
-
-  if(roast === "medium"){
-    waterTemp += 0;
-    grind = "Medium";
-  }
-
-  if(roast === "dark"){
-    waterTemp -= 3;
-    grind = "Medium Coarse";
-    ratio = "1:16";
-  }
-
-
-  // ========================================
-  // PROCESS ADJUSTMENT
-  // ========================================
-
-  waterTemp += process.brewAdjustments.temp;
-
-
-  // ========================================
-  // BREW STYLE ADJUSTMENT
-  // ========================================
-
-  waterTemp += brewStyle.adjustments.temp;
-
-  ratio = brewStyle.adjustments.ratio;
-
-
-  // ========================================
-  // FLAVOR TARGET ADJUSTMENT
-  // ========================================
-
-  waterTemp += flavor.adjustments.temp;
-
-  grind = flavor.adjustments.grind;
-
-  ratio = flavor.adjustments.ratio;
-
-
-  // ========================================
-  // WARNING SYSTEM
-  // ========================================
-
-  let warning = "";
-
-  if(
-    !origin.commonProcesses.includes(processKey)
-  ){
-
-    warning = `
-      ⚠ ${origin.name} 較少使用
-      ${process.name}，
-      風味可能與典型產區表現不同。
-    `;
+    populateCoffees();
+    generateRecipe();
 
   }
+);
+
+generateBtn.addEventListener(
+  "click",
+  generateRecipe
+);
 
 
-  // ========================================
-  // ANALYSIS
-  // ========================================
+// ========================================
+// POPULATE COFFEE LIST
+// ========================================
 
-  const beanAnalysis = `
-    ${origin.name} 通常具有
-    ${origin.notes.join("、")}
-    等特性。
+function populateCoffees(){
 
-    ${process.name}
-    會進一步影響甜感、
-    clarity 與發酵感表現。
-  `;
+  coffeeSelect.innerHTML = "";
 
+  const filtered =
+    coffees.filter(coffee =>
+      coffee.type === brewType.value
+    );
 
-  const philosophyAnalysis = `
-    ${brewStyle.name}
-    傾向透過注水節奏、
-    擾流與 extraction strategy
-    去控制風味走向。
-  `;
+  filtered.forEach(coffee => {
 
+    const option =
+      document.createElement("option");
 
-  // ========================================
-  // SYSTEM CONCLUSION
-  // ========================================
+    option.value =
+      coffee.id;
 
-  let conclusion = `
-    系統目前傾向提升
-    clarity 與 sweetness balance，
-    並控制尾段 extraction，
-    避免風味混濁。
-  `;
+    option.innerText =
+      coffee.shortName;
 
-
-  if(processKey.includes("anaerobic")){
-
-    conclusion = `
-      由於厭氧處理本身具有較高發酵感，
-      系統降低攪動程度，
-      避免酒感與過熟水果感過強。
-    `;
-
-  }
-
-
-  if(processKey === "wet-hulled"){
-
-    conclusion = `
-      Wet Hulled 豆子通常具有厚重 body
-      與 earthy character。
-
-      系統降低水溫與擾流，
-      避免 muddy mouthfeel。
-    `;
-
-  }
-
-
-  if(
-    brewStyleKey === "nordic"
-    &&
-    roast === "light"
-  ){
-
-    conclusion = `
-      Nordic 高萃取風格配合淺焙，
-      將提高透明感與明亮酸質。
-
-      建議控制尾段 extraction，
-      避免乾澀感。
-    `;
-
-  }
-
-
-  // ========================================
-  // BREWING ADVICE
-  // ========================================
-
-  const advice = [
-
-    {
-      issue: "如果過酸",
-      fix: `
-        研磨略細、
-        提高 1°C 水溫，
-        或延長尾段注水。
-      `
-    },
-
-    {
-      issue: "如果過苦",
-      fix: `
-        降低攪動、
-        略粗研磨，
-        或減少尾段 extraction。
-      `
-    },
-
-    {
-      issue: "如果甜感不足",
-      fix: `
-        延長 bloom 5-10 秒，
-        並保持穩定中心注水。
-      `
-    }
-
-  ];
-
-
-  // ========================================
-  // RENDER
-  // ========================================
-
-  renderResult({
-
-    waterTemp,
-    ratio,
-    grind,
-
-    pours:
-      brewStyle.pours,
-
-    warning,
-
-    beanAnalysis,
-    philosophyAnalysis,
-    conclusion,
-
-    advice,
-
-    flavor,
-
-    brewStyle
+    coffeeSelect.appendChild(option);
 
   });
 
 }
 
 
+// ========================================
+// MAIN GENERATOR
+// ========================================
+
+function generateRecipe(){
+
+  document
+    .getElementById("resultPlaceholder")
+    .style.display = "none";
+
+  const coffee =
+    coffees.find(c =>
+      c.id === coffeeSelect.value
+    );
+
+  if(!coffee) return;
+
+  const intention =
+    flavorSelect.value;
+
+  if(coffee.type === "filter"){
+
+    renderFilterRecipe(
+      coffee,
+      intention
+    );
+
+  } else {
+
+    renderEspressoRecipe(
+      coffee,
+      intention
+    );
+
+  }
+
+}
+
 
 // ========================================
-// RENDER RESULT
+// FILTER ENGINE
 // ========================================
 
-function renderResult(data){
+function renderFilterRecipe(
+  coffee,
+  intention
+){
 
-  const result =
-    document.getElementById("result");
+  let temp =
+    coffee.brewBias.temp;
 
-  const warningBox =
-    document.getElementById("warning");
+  let ratio =
+    coffee.brewBias.ratio;
+
+  let grind =
+    coffee.brewBias.grind;
+
+  let flow =
+    coffee.brewBias.flow;
+
+  let philosophy =
+    "";
+
+  let intentionTitle =
+    "";
+
+  let pours =
+    [...coffee.brewBias.pours];
 
 
-  // ========================================
-  // WARNING
-  // ========================================
+  // ======================================
+  // CLARITY
+  // ======================================
 
-  if(data.warning){
+  if(intention === "clarity"){
 
-    warningBox.innerHTML = `
-      <div class="warning">
-        ${data.warning}
-      </div>
+    temp += 1;
+
+    ratio = "1:16.5";
+
+    flow =
+      "Low agitation / gentle centre pour";
+
+    intentionTitle =
+      "Floral / Tea-like Clarity";
+
+    philosophy = `
+
+      This recipe prioritises cup clarity,
+      aromatic transparency,
+      and elegant acidity structure.
+
+      Lower turbulence and extended extraction
+      help preserve delicate florals
+      and tea-like texture.
+
     `;
-
-  }else{
-
-    warningBox.innerHTML = "";
 
   }
 
 
-  // ========================================
-  // HTML
-  // ========================================
+  // ======================================
+  // BALANCED
+  // ======================================
 
-  result.innerHTML = `
+  if(intention === "balanced"){
 
-    <!-- TITLE -->
+    intentionTitle =
+      "Balanced Sweetness";
 
-    <h2 class="section-title">
-      ☕ Brewing Recipe
-    </h2>
+    philosophy = `
 
+      This recipe aims to balance sweetness,
+      acidity,
+      and tactile structure.
 
+      Moderate agitation maintains both
+      flavour clarity and body development.
 
-    <!-- RECIPE GRID -->
+    `;
 
-    <div class="recipe-grid">
+  }
 
-      <div class="recipe-item">
 
-        <h3>
-          Water Temperature
-        </h3>
+  // ======================================
+  // BODY
+  // ======================================
 
-        <p>
-          ${data.waterTemp}°C
-        </p>
+  if(intention === "body"){
 
-      </div>
+    temp -= 1;
 
+    ratio = "1:15";
 
-      <div class="recipe-item">
+    flow =
+      "Medium agitation / lower flow resistance";
 
-        <h3>
-          Brew Ratio
-        </h3>
+    grind =
+      "Between table salt and white sugar";
 
-        <p>
-          ${data.ratio}
-        </p>
+    intentionTitle =
+      "Heavy Body / Chocolate";
 
-      </div>
+    philosophy = `
 
+      This recipe increases tactile structure
+      and sweetness density.
 
-      <div class="recipe-item">
+      Slightly lower ratio and stronger extraction
+      encourage syrupy mouthfeel
+      and heavier body expression.
 
-        <h3>
-          Grind Size
-        </h3>
+    `;
 
-        <p>
-          ${data.grind}
-        </p>
+  }
 
-      </div>
 
+  // ======================================
+  // FUNKY
+  // ======================================
 
-      <div class="recipe-item">
+  if(intention === "funky"){
 
-        <h3>
-          Brewing Philosophy
-        </h3>
+    temp -= 1;
 
-        <p>
-          ${data.brewStyle.name}
-        </p>
+    ratio = "1:15";
 
-      </div>
+    flow =
+      "Controlled low agitation";
 
-    </div>
+    intentionTitle =
+      "Funky / Fermentation Forward";
 
+    philosophy = `
 
+      This recipe highlights fermentation character,
+      fruit saturation,
+      and expressive sweetness.
 
-    <!-- POUR STRUCTURE -->
+      Controlled agitation prevents excessive harshness
+      while allowing funkier notes
+      to remain vivid.
 
-    <h2 class="section-title">
-      Pour Structure 注水結構
-    </h2>
+    `;
 
+  }
 
-  ${data.pours.map(pour => `
-  
-    <div class="pour-step">
-  
-      <div class="pour-title">
-  
-        ${pour.en}
-        ${pour.zh}
-  
-      </div>
-  
-      <div class="pour-detail">
-  
-        ${pour.water}
-        ｜
-        ${pour.time}
-  
-      </div>
-  
-    </div>
-  
-  `).join("")}
 
+  // ======================================
+  // NOTES
+  // ======================================
 
+  const notesHTML =
+    coffee.notes.map(note => {
 
-    <!-- EXTRACTION INTENT -->
+      return `
+        <div class="tag">
+          ${note}
+        </div>
+      `;
 
-    <h2 class="section-title">
-      Extraction Intent 萃取方向
-    </h2>
+    }).join("");
 
-    <div class="intent-list">
 
-      <div class="intent-item">
-        ✓ 提升透明感 Clarity
-      </div>
+  // ======================================
+  // POUR STRUCTURE
+  // ======================================
 
-      <div class="intent-item">
-        ✓ 控制尾段萃取
-      </div>
+  const poursHTML =
+    pours.map(pour => {
 
-      <div class="intent-item">
-        ✓ 保持甜感平衡
-      </div>
+      return `
 
-    </div>
+        <div class="pour-step">
 
+          <div class="pour-title">
 
+            ${pour.title}
 
-    <!-- ANALYSIS -->
+          </div>
 
-    <h2 class="section-title">
-      Coffee Analysis 咖啡分析
-    </h2>
+          <div class="pour-detail">
 
+            ${pour.amount}
+            ·
+            ${pour.timing}
 
-    <div class="analysis-card">
+            <br><br>
 
-      <p>
-        ${data.beanAnalysis}
-      </p>
+            ${pour.note}
 
-      <p>
-        ${data.philosophyAnalysis}
-      </p>
-
-      <div class="analysis-highlight">
-
-        ${data.conclusion}
-
-      </div>
-
-    </div>
-
-
-
-    <!-- FLAVOR TARGET -->
-
-    <h2 class="section-title">
-      Flavor Direction 風味方向
-    </h2>
-
-
-    <div class="tag">
-
-      ${data.flavor.name}
-
-    </div>
-
-
-
-    <!-- BREWING ADVICE -->
-
-    <h2 class="section-title">
-      Brewing Advice 沖煮修正
-    </h2>
-
-
-    <div class="advice-card">
-
-      ${data.advice.map(item => `
-
-        <div class="advice-item">
-
-          <strong>
-            ${item.issue}
-          </strong>
-
-          <div>
-            ${item.fix}
           </div>
 
         </div>
 
-      `).join("")}
+      `;
+
+    }).join("");
+
+
+  // ======================================
+  // RENDER
+  // ======================================
+
+  result.innerHTML = `
+
+    <div class="result-section">
+
+      <div class="coffee-name">
+        ${coffee.shortName}
+      </div>
+
+      <div class="coffee-meta">
+
+        ${coffee.origin}
+        ·
+        ${coffee.process}
+        ·
+        ${coffee.roast}
+
+      </div>
+
+      <div class="tag-list">
+
+        ${notesHTML}
+
+      </div>
 
     </div>
 
 
 
-    <!-- NOTES -->
+    <div class="result-section">
 
-    <h2 class="section-title">
-      Brewing Notes 沖煮備註
-    </h2>
+      <div class="section-title">
+
+        Brewing Intention
+
+      </div>
+
+      <div class="analysis-highlight">
+
+        ${intentionTitle}
+
+      </div>
+
+    </div>
 
 
-    <div class="notes">
 
-      系統會根據：
-      豆子特性、
-      處理法、
-      烘焙度、
-      沖煮哲學與目標風味，
-      動態調整 extraction strategy。
+    <div class="result-section">
 
-      建議實際沖煮時，
-      再按 grinder、
-      水質與咖啡新鮮度微調。
+      <div class="section-title">
+
+        Brewing Recipe
+
+      </div>
+
+      <div class="recipe-grid">
+
+
+        <div class="recipe-item">
+
+          <h3>
+            Water Temperature
+          </h3>
+
+          <p>
+            ${temp}°C
+          </p>
+
+        </div>
+
+
+        <div class="recipe-item">
+
+          <h3>
+            Brew Ratio
+          </h3>
+
+          <p>
+            ${ratio}
+          </p>
+
+        </div>
+
+
+        <div class="recipe-item">
+
+          <h3>
+            Grind
+          </h3>
+
+          <p>
+            ${grind}
+          </p>
+
+        </div>
+
+
+        <div class="recipe-item">
+
+          <h3>
+            Flow Style
+          </h3>
+
+          <p>
+            ${flow}
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="result-section">
+
+      <div class="section-title">
+
+        Pour Structure
+
+      </div>
+
+      ${poursHTML}
+
+    </div>
+
+
+
+    <div class="result-section">
+
+      <div class="section-title">
+
+        Brewing Philosophy
+
+      </div>
+
+      <div class="analysis">
+
+        <p>
+
+          ${philosophy}
+
+        </p>
+
+        <div class="analysis-highlight">
+
+          ${coffee.shortName}
+          performs best with controlled extraction flow
+          and stable bed dynamics.
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+
+// ========================================
+// ESPRESSO ENGINE
+// ========================================
+
+function renderEspressoRecipe(
+  coffee,
+  intention
+){
+
+  let ratio =
+    coffee.brewBias.ratio;
+
+  let shotTime =
+    coffee.brewBias.shotTime;
+
+  let philosophy =
+    "";
+
+  let intentionTitle =
+    "";
+
+
+  // ======================================
+  // CLARITY
+  // ======================================
+
+  if(intention === "clarity"){
+
+    ratio = "1:2.3";
+
+    shotTime =
+      "24 – 28 seconds";
+
+    intentionTitle =
+      "Floral / Clarity Focus";
+
+    philosophy = `
+
+      Higher yield ratio promotes flavour separation
+      and cleaner finish.
+
+    `;
+
+  }
+
+
+  // ======================================
+  // BALANCED
+  // ======================================
+
+  if(intention === "balanced"){
+
+    intentionTitle =
+      "Balanced Sweetness";
+
+    philosophy = `
+
+      This recipe balances body,
+      sweetness,
+      and finish clarity.
+
+    `;
+
+  }
+
+
+  // ======================================
+  // BODY
+  // ======================================
+
+  if(intention === "body"){
+
+    ratio = "1:1.8";
+
+    shotTime =
+      "30 – 34 seconds";
+
+    intentionTitle =
+      "Heavy Body / Chocolate";
+
+    philosophy = `
+
+      Lower yield ratio increases crema density
+      and tactile sweetness.
+
+    `;
+
+  }
+
+
+  // ======================================
+  // FUNKY
+  // ======================================
+
+  if(intention === "funky"){
+
+    ratio = "1:2";
+
+    shotTime =
+      "26 – 30 seconds";
+
+    intentionTitle =
+      "Fermentation Forward";
+
+    philosophy = `
+
+      This recipe allows fruit-forward character
+      and fermentation complexity
+      to remain expressive.
+
+    `;
+
+  }
+
+
+  // ======================================
+  // NOTES
+  // ======================================
+
+  const notesHTML =
+    coffee.notes.map(note => {
+
+      return `
+        <div class="tag">
+          ${note}
+        </div>
+      `;
+
+    }).join("");
+
+
+  // ======================================
+  // RENDER
+  // ======================================
+
+  result.innerHTML = `
+
+    <div class="result-section">
+
+      <div class="coffee-name">
+        ${coffee.shortName}
+      </div>
+
+      <div class="coffee-meta">
+
+        ${coffee.origin}
+        ·
+        ${coffee.process}
+        ·
+        ${coffee.roast}
+
+      </div>
+
+      <div class="tag-list">
+
+        ${notesHTML}
+
+      </div>
+
+    </div>
+
+
+
+    <div class="result-section">
+
+      <div class="section-title">
+
+        Brewing Intention
+
+      </div>
+
+      <div class="analysis-highlight">
+
+        ${intentionTitle}
+
+      </div>
+
+    </div>
+
+
+
+    <div class="result-section">
+
+      <div class="section-title">
+
+        Espresso Recipe
+
+      </div>
+
+      <div class="recipe-grid">
+
+
+        <div class="recipe-item">
+
+          <h3>
+            Water Temperature
+          </h3>
+
+          <p>
+            ${coffee.brewBias.temp}
+          </p>
+
+        </div>
+
+
+        <div class="recipe-item">
+
+          <h3>
+            Brew Ratio
+          </h3>
+
+          <p>
+            ${ratio}
+          </p>
+
+        </div>
+
+
+        <div class="recipe-item">
+
+          <h3>
+            Grind
+          </h3>
+
+          <p>
+            ${coffee.brewBias.grind}
+          </p>
+
+        </div>
+
+
+        <div class="recipe-item">
+
+          <h3>
+            Shot Time
+          </h3>
+
+          <p>
+            ${shotTime}
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="result-section">
+
+      <div class="section-title">
+
+        Brewing Philosophy
+
+      </div>
+
+      <div class="analysis">
+
+        <p>
+
+          ${philosophy}
+
+        </p>
+
+        <div class="analysis-highlight">
+
+          ${coffee.shortName}
+          performs best with stable flow resistance
+          and controlled extraction development.
+
+        </div>
+
+      </div>
 
     </div>
 

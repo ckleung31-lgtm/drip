@@ -1,284 +1,171 @@
 <!DOCTYPE html>
-<html lang="zh-HK">
+
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>
-    Coffee Brewing Philosophy
+    Green Door Coffee Brewing Philosophy
   </title>
 
-  <link rel="stylesheet" href="css/style.css">
+  <!-- CSS -->
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
 </head>
 
 <body>
 
-  <div class="container">
 
-    <!-- HERO -->
+  <div class="gdc-brew-app">
 
-    <header class="hero">
+    <div class="container">
 
-      <h1>
-        ☕ Coffee Brewing Philosophy
-      </h1>
 
-      <p>
-        根據豆子特性、處理法、
-        烘焙度與沖煮哲學，
-        生成建議手沖方案與沖煮分析。
-      </p>
+      <!-- HERO -->
+      <header class="hero">
 
-    </header>
+        <p class="eyebrow">
+          Green Door Coffee
+        </p>
 
+        <h1>
+          Brewing Philosophy
+        </h1>
 
-    <!-- FORM -->
+        <p class="hero-text">
+          A coffee brewing system designed
+          around extraction balance,
+          flow behaviour,
+          and coffee character.
+        </p>
 
-    <section class="card">
+      </header>
 
-      <!-- ORIGIN -->
 
-      <div class="field">
 
-        <label>
-          國家 / 產地
-        </label>
+      <!-- FORM -->
+      <section class="card">
 
-        <select id="origin">
 
-          <option value="ethiopia">
-            Ethiopia
-          </option>
+        <!-- BREW TYPE -->
+        <div class="field">
 
-          <option value="kenya">
-            Kenya
-          </option>
+          <label for="brewType">
+            Brewing Type
+          </label>
 
-          <option value="panama">
-            Panama
-          </option>
+          <select id="brewType">
 
-          <option value="colombia">
-            Colombia
-          </option>
+            <option value="filter">
+              Filter / Pour Over
+            </option>
 
-          <option value="brazil">
-            Brazil
-          </option>
+            <option value="espresso">
+              Espresso
+            </option>
 
-          <option value="indonesia">
-            Indonesia
-          </option>
-
-          <option value="uganda">
-            Uganda
-          </option>
-
-          <option value="honduras">
-            Honduras
-          </option>
-
-          <option value="costa-rica">
-            Costa Rica
-          </option>
-
-          <option value="bolivia">
-            Bolivia
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <!-- PROCESS -->
-
-      <div class="field">
-
-        <label>
-          處理法
-        </label>
-
-        <select id="process">
-
-          <option value="washed">
-            Washed
-          </option>
-
-          <option value="double-washed">
-            Double Washed
-          </option>
-
-          <option value="natural">
-            Natural
-          </option>
-
-          <option value="wet-hulled">
-            Wet Hulled (Giling Basah)
-          </option>
-
-          <option value="honey">
-            Honey
-          </option>
-
-          <option value="anaerobic-washed">
-            Anaerobic Washed
-          </option>
-
-          <option value="anaerobic-natural">
-            Anaerobic Natural
-          </option>
-
-          <option value="carbonic">
-            Carbonic Maceration
-          </option>
-
-          <option value="thermal-shock">
-            Thermal Shock
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <!-- ROAST -->
-
-      <div class="field">
-
-        <label>
-          烘焙度
-        </label>
-
-        <select id="roast">
-
-          <option value="light">
-            Light Roast
-          </option>
-
-          <option value="medium">
-            Medium Roast
-          </option>
-
-          <option value="dark">
-            Dark Roast
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <!-- BREW STYLE -->
-
-      <div class="field">
-
-        <label>
-          沖煮哲學
-        </label>
-
-        <select id="brewStyle">
-
-          <option value="japanese">
-            日系乾淨感
-          </option>
-
-          <option value="nordic">
-            北歐高萃取
-          </option>
-
-          <option value="competition">
-            競技風味爆發
-          </option>
-
-          <option value="cafe">
-            Café 平衡耐飲
-          </option>
-
-          <option value="hybrid">
-            Hybrid Modern
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <!-- FLAVOR -->
-
-      <div class="field">
-
-        <label>
-          想突出嘅風味
-        </label>
-
-        <select id="targetFlavor">
-
-          <option value="floral">
-            花香果調
-          </option>
-
-          <option value="bright">
-            明亮酸質
-          </option>
-
-          <option value="balanced">
-            圓潤平衡
-          </option>
-
-          <option value="nutty">
-            朱古力堅果
-          </option>
-
-          <option value="syrupy">
-            醇厚焦糖
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <!-- BUTTON -->
-
-      <button id="brewBtn">
-
-        Generate Recipe
-
-      </button>
-
-    </section>
-
-
-    <!-- RESULT -->
-
-    <section class="result-card">
-
-      <!-- WARNING -->
-
-      <div id="warning"></div>
-
-
-      <!-- RECIPE -->
-
-      <div id="result">
-
-        <div class="placeholder">
-
-          選擇條件後生成沖煮方案
+          </select>
 
         </div>
 
-      </div>
 
-    </section>
+
+        <!-- COFFEE -->
+        <div class="field">
+
+          <label for="coffeeSelect">
+            Select Coffee
+          </label>
+
+          <select id="coffeeSelect">
+          </select>
+
+        </div>
+
+
+
+        <!-- INTENTION -->
+        <div class="field">
+
+          <label for="flavorSelect">
+            Brewing Intention
+          </label>
+
+          <select id="flavorSelect">
+
+            <option value="clarity">
+              Floral / Tea-like Clarity
+            </option>
+
+            <option value="balanced">
+              Balanced Sweetness
+            </option>
+
+            <option value="body">
+              Heavy Body / Chocolate
+            </option>
+
+            <option value="funky">
+              Funky / Fermentation Forward
+            </option>
+
+          </select>
+
+        </div>
+
+
+
+        <!-- BUTTON -->
+        <button id="generateBtn">
+
+          Generate Brewing Recipe
+
+        </button>
+
+      </section>
+
+
+
+      <!-- RESULT -->
+      <section class="result-card">
+
+        <div
+          id="resultPlaceholder"
+          class="placeholder"
+        >
+
+          Select a coffee to generate
+          a brewing recommendation.
+
+        </div>
+
+        <div id="result">
+        </div>
+
+      </section>
+
+    </div>
 
   </div>
 
 
+
+  <!-- DATA -->
   <script src="js/data.js"></script>
+
+  <!-- APP -->
   <script src="js/app.js"></script>
+
 
 </body>
 
