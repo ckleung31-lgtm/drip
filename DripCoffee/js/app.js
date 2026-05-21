@@ -65,7 +65,7 @@ function populateCoffees(){
       coffee.id;
 
     option.innerText =
-      coffee.shortName;
+      coffee.fullName;
 
     coffeeSelect.appendChild(option);
 
@@ -323,7 +323,7 @@ function renderFilterRecipe(
     <div class="result-section">
 
       <div class="coffee-name">
-        ${coffee.shortName}
+        ${coffee.fullName}
       </div>
 
       <div class="coffee-meta">
@@ -464,7 +464,7 @@ function renderFilterRecipe(
 
         <div class="analysis-highlight">
 
-          ${coffee.shortName}
+          ${coffee.fullName}
           performs best with controlled extraction flow
           and stable bed dynamics.
 
@@ -620,7 +620,7 @@ function renderEspressoRecipe(
     <div class="result-section">
 
       <div class="coffee-name">
-        ${coffee.shortName}
+        ${coffee.fullName}
       </div>
 
       <div class="coffee-meta">
@@ -747,7 +747,7 @@ function renderEspressoRecipe(
 
         <div class="analysis-highlight">
 
-          ${coffee.shortName}
+          ${coffee.fullName}
           performs best with stable flow resistance
           and controlled extraction development.
 
