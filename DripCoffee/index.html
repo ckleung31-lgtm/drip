@@ -1,172 +1,83 @@
 <!DOCTYPE html>
-
-<html lang="en">
-
+<html lang="zh-HK">
 <head>
-
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>
-    Green Door Coffee Brewing Philosophy
-  </title>
-
-  <!-- CSS -->
-  <link
-    rel="stylesheet"
-    href="css/style.css"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Green Door Coffee · Brewing Philosophy</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
+<div class="gdc-brew-app">
 
-  <div class="gdc-brew-app">
+  <div class="container">
 
-    <div class="container">
+    <!-- HERO -->
+    <header class="hero">
+      <p class="eyebrow">Green Door Coffee</p>
+      <h1>沖煮哲學 · Brewing Philosophy</h1>
+      <p class="hero-text">一套圍繞萃取平衡、水流行為與咖啡本質設計的沖煮系統。A coffee brewing system designed around extraction balance, flow behaviour, and coffee character.</p>
+    </header>
 
+    <!-- FORM（冇 Generate 按鈕） -->
+    <section class="card">
 
-      <!-- HERO -->
-      <header class="hero">
+      <!-- Brew Type -->
+      <div class="field">
+        <label>沖煮方式 · Brewing Type</label>
+        <select id="brewType">
+          <option value="filter">濾泡／手沖 · Filter / Pour Over</option>
+          <option value="espresso">濃縮咖啡 · Espresso</option>
+        </select>
+      </div>
 
-        <p class="eyebrow">
-          Green Door Coffee
-        </p>
+      <!-- Process Filter -->
+      <div class="field">
+        <label>處理法 · Process</label>
+        <select id="processFilter">
+          <option value="all">全部 · All Processes</option>
+          <option value="washed">水洗 · Washed</option>
+          <option value="natural">日曬 · Natural</option>
+          <option value="honey">蜜處理 · Honey / Passion / Pink</option>
+          <option value="anaerobic">厭氧 · Anaerobic</option>
+        </select>
+      </div>
 
-        <h1>
-          Brewing Philosophy
-        </h1>
+      <!-- Coffee Select -->
+      <div class="field">
+        <label>選擇咖啡豆 · Select Coffee</label>
+        <select id="coffeeSelect"></select>
+      </div>
 
-        <p class="hero-text">
-          A coffee brewing system designed
-          around extraction balance,
-          flow behaviour,
-          and coffee character.
-        </p>
+      <!-- Intention -->
+      <div class="field">
+        <label>沖煮意向 · Brewing Intention</label>
+        <select id="flavorSelect">
+          <option value="clarity">花香／茶感 · Floral / Tea-like Clarity</option>
+          <option value="balanced">平衡甜感 · Balanced Sweetness</option>
+          <option value="body">厚重口感／朱古力 · Heavy Body / Chocolate</option>
+          <option value="funky">發酵感／酒香 · Funky / Fermentation Forward</option>
+        </select>
+      </div>
 
-      </header>
+    </section>
 
-
-
-      <!-- FORM -->
-      <section class="card">
-
-
-        <!-- BREW TYPE -->
-        <div class="field">
-
-          <label for="brewType">
-            Brewing Type
-          </label>
-
-          <select id="brewType">
-
-            <option value="filter">
-              Filter / Pour Over
-            </option>
-
-            <option value="espresso">
-              Espresso
-            </option>
-
-          </select>
-
-        </div>
-
-
-
-        <!-- COFFEE -->
-        <div class="field">
-
-          <label for="coffeeSelect">
-            Select Coffee
-          </label>
-
-          <select id="coffeeSelect">
-          </select>
-
-        </div>
-
-
-
-        <!-- INTENTION -->
-        <div class="field">
-
-          <label for="flavorSelect">
-            Brewing Intention
-          </label>
-
-          <select id="flavorSelect">
-
-            <option value="clarity">
-              Floral / Tea-like Clarity
-            </option>
-
-            <option value="balanced">
-              Balanced Sweetness
-            </option>
-
-            <option value="body">
-              Heavy Body / Chocolate
-            </option>
-
-            <option value="funky">
-              Funky / Fermentation Forward
-            </option>
-
-          </select>
-
-        </div>
-
-
-
-        <!-- BUTTON -->
-        <button id="generateBtn">
-
-          Generate Brewing Recipe
-
-        </button>
-
-      </section>
-
-
-
-      <!-- RESULT -->
-      <section class="result-card">
-
-        <div
-          id="resultPlaceholder"
-          class="placeholder"
-        >
-
-          Select a coffee to generate
-          a brewing recommendation.
-
-        </div>
-
-        <div id="result">
-        </div>
-
-      </section>
-
-    </div>
+    <!-- RESULT -->
+    <section class="result-card">
+      <div id="resultPlaceholder" class="placeholder">
+        選擇咖啡豆以生成沖煮建議。<br>Select a coffee to generate a brewing recommendation.
+      </div>
+      <div id="result" aria-live="polite"></div>
+    </section>
 
   </div>
 
+</div>
 
-
-  <!-- DATA -->
-  <script src="js/data.js"></script>
-
-  <!-- APP -->
-  <script src="js/app.js"></script>
-
+<script src="js/data.js"></script>
+<script src="js/processFilter.js"></script>
+<script src="js/recipeRenderer.js"></script>
+<script src="js/app.js"></script>
 
 </body>
-
 </html>
