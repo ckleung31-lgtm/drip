@@ -28,7 +28,7 @@ function getProcessCategories(processStr) {
 function matchesProcessFilter(coffee, processValue) {
   if (processValue === "all") return true;
 
-  const processLower = coffee.process.toLowerCase();
+  const processLower = (coffee.process || "").toLowerCase();
 
   switch(processValue) {
     case "washed":
@@ -71,7 +71,7 @@ function getCoffeeDisplayName(coffee) {
   };
 
   const emoji = countryEmojis[coffee.origin] || "📍";
-  return `${emoji} ${coffee.fullName}`;
+  return `${emoji} ${coffee.shortName || coffee.fullName}`;
 }
 
 // 更新 coffeeSelect 嘅 options
