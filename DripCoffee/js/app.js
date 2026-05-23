@@ -3,6 +3,7 @@
 // app.js - 主程式
 // 整合 processFilter 同 recipeRenderer
 // 自動更新（無需 Generate 按鈕）
+// 支援總水量輸入
 // ========================================
 
 // DOM 元素
@@ -10,6 +11,7 @@ let brewTypeSelect;
 let processFilterSelect;
 let coffeeSelect;
 let flavorSelect;
+let totalWaterInput;
 let resultDiv;
 let resultPlaceholder;
 
@@ -25,11 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
   processFilterSelect = document.getElementById("processFilter");
   coffeeSelect = document.getElementById("coffeeSelect");
   flavorSelect = document.getElementById("flavorSelect");
+  totalWaterInput = document.getElementById("totalWater");
   resultDiv = document.getElementById("result");
   resultPlaceholder = document.getElementById("resultPlaceholder");
 
   // 檢查必要元素是否存在
-  if (!brewTypeSelect || !processFilterSelect || !coffeeSelect || !flavorSelect) {
+  if (!brewTypeSelect || !processFilterSelect || !coffeeSelect || !flavorSelect || !totalWaterInput) {
     console.error("Missing required DOM elements");
     return;
   }
@@ -85,6 +88,13 @@ document.addEventListener("DOMContentLoaded", () => {
       updateRecipe();
     }
   });
+
+  // 監聽 totalWater 改變（即時更新）
+  totalWaterInput.addEventListener("change", () => {
+    if (currentCoffee) {
+      updateRecipe();
+    }
+  });
 });
 
 // ========================================
@@ -124,6 +134,17 @@ function getSelectedCoffee() {
 }
 
 // ========================================
+// 獲取有效總水量（最少 150ml，最多 600ml）
+// ========================================
+function getValidTotalWater() {
+  let totalWater = parseInt(totalWaterInput.value);
+  if (isNaN(totalWater)) totalWater = 270;
+  if (totalWater < 150) totalWater = 150;
+  if (totalWater > 600) totalWater = 600;
+  return totalWater;
+}
+
+// ========================================
 // 更新 recipe（生成並顯示）
 // ========================================
 function updateRecipe() {
@@ -133,22 +154,58 @@ function updateRecipe() {
   }
 
   const intention = flavorSelect.value;
+  const totalWater = getValidTotalWater();
 
-  // Debug: 檢查 function 是否存在
-  console.log("generateRecipeHTML exists?", typeof generateRecipeHTML);
-
-  let recipeHTML = "";
-  if (typeof generateRecipeHTML === "function") {
-    recipeHTML = generateRecipeHTML(currentCoffee, intention);
-  } else {
-    recipeHTML = "<p>Error: Recipe renderer not loaded. Please check console.</p>";
+  // 同步更新 input 顯示值（如果超出範圍會被修正）
+  if (totalWaterInput.value != totalWater) {
+    totalWaterInput.value = totalWater;
   }
 
+  // 更新粉量提示（顯示喺 HTML 嘅 hint 位置）
+  updateDoseHint(currentCoffee, intention, totalWater);
+
+  // 使用 recipeRenderer.js 嘅函數
+  let recipeHTML = "";
+  if (typeof generateRecipeHTML === "function") {
+    recipeHTML = generateRecipeHTML(currentCoffee, intention, totalWater);
+  } else {
+    console.warn("generateRecipeHTML not found");
+    recipeHTML = "<p>Error: Recipe renderer not loaded</p>";
+  }
+
+  // 顯示結果
   if (resultDiv && resultPlaceholder) {
     resultDiv.innerHTML = recipeHTML;
     resultPlaceholder.style.display = "none";
     resultDiv.style.display = "block";
   }
+}
+
+// ========================================
+// 更新粉量提示（喺 HTML 嘅 hint 位置顯示）
+// ========================================
+function updateDoseHint(coffee, intention, totalWater) {
+  const doseHint = document.getElementById("doseHint");
+  if (!doseHint) return;
+
+  // 獲取當前比例（需要從 coffee 同 intention 計算）
+  let ratio = coffee.brewBias.ratio;
+
+  // 根據 intention 調整比例（同 recipeRenderer 邏輯一致）
+  if (intention === "clarity") {
+    ratio = "1:16.5";
+  } else if (intention === "body" || intention === "funky") {
+    ratio = "1:15";
+  } else if (intention === "clarity-sweet") {
+    ratio = "1:16.5";
+  }
+  // balanced 保持原狀
+
+  const ratioValue = parseFloat(ratio.split(":")[1]);
+  const dose = totalWater / ratioValue;
+  const roundedDose = Math.round(dose * 10) / 10;
+
+  doseHint.innerHTML = `💡 粉量：約 ${roundedDose}g（按比例 ${ratio} 計算）`;
 }
 
 // ========================================
@@ -168,4 +225,5 @@ if (typeof window !== "undefined") {
   window.getSelectedCoffee = getSelectedCoffee;
   window.updateRecipe = updateRecipe;
   window.clearResult = clearResult;
+  window.getValidTotalWater = getValidTotalWater;
 }

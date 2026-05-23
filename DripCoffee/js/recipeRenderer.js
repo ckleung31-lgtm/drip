@@ -3,6 +3,7 @@
 // recipeRenderer.js - 食譜渲染引擎
 // 支援 Filter 同 Espresso
 // 注水步驟中英對照 · 研磨度統一翻譯
+// Bypass 選項加入總水量及粉量顯示
 // ========================================
 
 // ========================================
@@ -55,6 +56,9 @@ function renderFilterRecipe(coffee, intention) {
   let philosophy = "";
   let intentionTitle = "";
   let intentionEn = "";
+
+  // 額外顯示變量（僅 bypass 用）
+  let extraRecipeItems = "";
 
   // CLARITY
   if (intention === "clarity") {
@@ -118,6 +122,50 @@ function renderFilterRecipe(coffee, intention) {
     `;
   }
 
+  // ======================================
+  // CLARITY SWEET (BYPASS)
+  // ======================================
+  if (intention === "clarity-sweet") {
+    temp += 1;
+    ratio = "1:16.5";
+    grind = "細 · Fine (比正常幼半格)";
+    flow = "低擾動、中心注水 + Bypass · Low agitation, center pour + Bypass";
+    intentionTitle = "清澈甜感";
+    intentionEn = "Clean & Sweet (Bypass)";
+    philosophy = `
+      This recipe uses fine grind + low agitation + bypass.
+      Fine grind increases sweetness and extraction,
+      while bypass prevents over-extraction of fines.
+      <br><br>
+      本配方採用幼研磨 + 低擾動 + Bypass 溝水。
+      幼研磨提升甜感與萃取率，
+      Bypass 則避免細粉過萃帶嚟嘅苦澀。
+    `;
+
+    // 改 pour structure（最後一注減少，加 bypass）
+    pours = [
+      { title: "Bloom Saturation", amount: "50ml", timing: "0:00 – 0:35", note: "Slow center pour, minimal agitation." },
+      { title: "Main Extraction", amount: "120ml", timing: "0:35 – 1:10", note: "Stable center pour." },
+      { title: "Finishing Pour", amount: "80ml", timing: "1:10 – 1:30", note: "Last water through coffee bed." }
+    ];
+
+    // 設定總注水量與建議粉量（用戶指定）
+    const totalWater = 280;   // 通過粉床250ml + bypass30ml
+    const suggestedDose = 16.7;
+
+    // 製作額外的 recipe items
+    extraRecipeItems = `
+      <div class="recipe-item">
+        <h3>建議粉量 · Coffee Dose</h3>
+        <p>${suggestedDose}g</p>
+      </div>
+      <div class="recipe-item">
+        <h3>總注水量 · Total Water</h3>
+        <p>${totalWater}ml</p>
+      </div>
+    `;
+  }
+
   // 研磨度中英對照
   const grindDisplay = getBilingualGrind(grind);
 
@@ -138,6 +186,24 @@ function renderFilterRecipe(coffee, intention) {
       </div>
     `;
   }).join("");
+
+  // 計算 bypass 水量（只有 clarity-sweet 先有）
+  let bypassAmount = 0;
+  if (intention === "clarity-sweet") {
+    bypassAmount = 30;
+  }
+
+  // 製作 bypass HTML
+  const bypassHTML = bypassAmount > 0 ? `
+    <div class="pour-step" style="background: #e8efe2;">
+      <div class="pour-title">✨ Bypass 溝水 · Bypass</div>
+      <div class="pour-detail">
+        加入 ${bypassAmount}ml 純水 · Add ${bypassAmount}ml clean water
+        <br><br>
+        直接倒入咖啡液中，輕輕攪拌均勻。
+      </div>
+    </div>
+  ` : "";
 
   // RENDER
   return `
@@ -167,6 +233,7 @@ function renderFilterRecipe(coffee, intention) {
           <h3>粉水比 · Brew Ratio</h3>
           <p>${ratio}</p>
         </div>
+        ${extraRecipeItems}
         <div class="recipe-item">
           <h3>研磨度 · Grind</h3>
           <p>${grindDisplay}</p>
@@ -181,6 +248,7 @@ function renderFilterRecipe(coffee, intention) {
     <div class="result-section">
       <div class="section-title">注水結構 · Pour Structure</div>
       ${poursHTML}
+      ${bypassHTML}
     </div>
 
     <div class="result-section">
