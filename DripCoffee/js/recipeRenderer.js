@@ -58,13 +58,21 @@ function renderFilterRecipe(coffee, intention) {
 
   // 額外顯示變量（for bypass / iced）
   let extraRecipeItems = "";
-  let bypassAmount = 0;
-  if (intention === "iced-drip") {
-    bypassAmount = 100;
-  }
+    // 計算 bypass 水量
+    let bypassAmount = 0;
+
+    if (intention === "clarity-sweet") {
+      bypassType = "water";
+      bypassAmount = 30;
+    }
+
+    if (intention === "iced-drip") {
+      bypassType = "ice";
+      bypassAmount = 100;
+    }
 
   // CLARITY
-  if (intention === "clarity-sweet" || intention === "iced-drip"){
+  if (intention === "clarity"){
     temp += 1;
     ratio = "1:16.5";
     flow = "低擾動／中心注水 · Low agitation / gentle centre pour";
@@ -270,17 +278,42 @@ function renderFilterRecipe(coffee, intention) {
     `;
   }).join("");
 
-  // 製作 bypass HTML（只有 clarity-sweet 先有）
-  const bypassHTML = bypassAmount > 0 ? `
-    <div class="pour-step" style="background: #e8efe2;">
-      <div class="pour-title">✨ Bypass 溝水 · Bypass</div>
-      <div class="pour-detail">
-        加入 ${bypassAmount}ml 純水 · Add ${bypassAmount}ml clean water
-        <br><br>
-        直接倒入咖啡液中，輕輕攪拌均勻。
-      </div>
+  // 製作 bypass HTML（只有 clarity-sweet 及 iced drip coffee 先有）
+const bypassHTML = bypassAmount > 0 ? `
+
+  <div class="pour-step" style="background: #e8efe2;">
+
+    <div class="pour-title">
+
+      ${
+        bypassType === "ice"
+          ? "❄️ 冰塊稀釋 · Ice Dilution"
+          : "✨ Bypass 溝水 · Bypass"
+      }
+
     </div>
-  ` : "";
+
+    <div class="pour-detail">
+
+      ${
+        bypassType === "ice"
+          ? `
+            加入 ${bypassAmount}g 冰塊於分享壺中。
+            <br><br>
+            Place ${bypassAmount}g ice in server before brewing.
+          `
+          : `
+            加入 ${bypassAmount}ml 純水 · Add ${bypassAmount}ml clean water
+            <br><br>
+            直接倒入咖啡液中，輕輕攪拌均勻。
+          `
+      }
+
+    </div>
+
+  </div>
+
+` : "";
 
   // RENDER
   return `
