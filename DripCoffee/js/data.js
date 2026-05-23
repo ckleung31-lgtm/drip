@@ -321,7 +321,7 @@ const coffees = [
     process: "Mixed Washed / Natural",
     roast: "Medium Roast",
     notes: ["Chocolate sweetness", "Balanced acidity", "Milk-friendly"],
-    brewBasis: {  // ⚠️ 注意：原本係 brewBias，呢度錯咗
+    brewBias: {  // ⚠️ 注意：原本係 brewBias，呢度錯咗
       ratio: "1:2.2",
       grind: "Fine table salt-like",
       temp: 92,
@@ -341,6 +341,14 @@ function getCoffeesByType(type) {
 }
 
 // Export
-if (typeof module !== "undefined" && module.exports) {
-  module.exports = { coffees, getCoffeeById, getCoffeesByType };
+// 刪除或註解掉呢段：
+// if (typeof module !== "undefined" && module.exports) {
+//   module.exports = { coffees, getCoffeeById, getCoffeesByType };
+// }
+
+// 確保加上呢段（等瀏覽器可以直接讀到）：
+if (typeof window !== "undefined") {
+  window.coffees = coffees;
+  window.getCoffeeById = getCoffeeById;
+  window.getCoffeesByType = getCoffeesByType;
 }
