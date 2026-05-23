@@ -1,9 +1,8 @@
 // ========================================
 // Green Door Coffee
 // recipeRenderer.js - 食譜渲染引擎
-// 支援 Filter 同 Espresso
+// 支援 Filter / Espresso / Iced Coffee
 // 注水步驟中英對照 · 研磨度統一翻譯
-// Bypass 選項加入總水量及粉量顯示
 // ========================================
 
 // ========================================
@@ -57,11 +56,15 @@ function renderFilterRecipe(coffee, intention) {
   let intentionTitle = "";
   let intentionEn = "";
 
-  // 額外顯示變量（僅 bypass 用）
+  // 額外顯示變量（for bypass / iced）
   let extraRecipeItems = "";
+  let bypassAmount = 0;
+  if (intention === "iced-drip") {
+    bypassAmount = 100;
+  }
 
   // CLARITY
-  if (intention === "clarity") {
+  if (intention === "clarity-sweet" || intention === "iced-drip"){
     temp += 1;
     ratio = "1:16.5";
     flow = "低擾動／中心注水 · Low agitation / gentle centre pour";
@@ -142,18 +145,15 @@ function renderFilterRecipe(coffee, intention) {
       Bypass 則避免細粉過萃帶嚟嘅苦澀。
     `;
 
-    // 改 pour structure（最後一注減少，加 bypass）
     pours = [
       { title: "Bloom Saturation", amount: "50ml", timing: "0:00 – 0:35", note: "Slow center pour, minimal agitation." },
       { title: "Main Extraction", amount: "120ml", timing: "0:35 – 1:10", note: "Stable center pour." },
       { title: "Finishing Pour", amount: "80ml", timing: "1:10 – 1:30", note: "Last water through coffee bed." }
     ];
 
-    // 設定總注水量與建議粉量（用戶指定）
-    const totalWater = 280;   // 通過粉床250ml + bypass30ml
+    const totalWater = 280;
     const suggestedDose = 16.7;
 
-    // 製作額外的 recipe items
     extraRecipeItems = `
       <div class="recipe-item">
         <h3>建議粉量 · Coffee Dose</h3>
@@ -164,6 +164,89 @@ function renderFilterRecipe(coffee, intention) {
         <p>${totalWater}ml</p>
       </div>
     `;
+
+    bypassAmount = 30;
+  }
+
+  if (intention === "iced-drip") {
+
+      temp = 93;
+
+      ratio = "1:13";
+
+      grind =
+        "White sugar-like";
+
+      flow =
+        "Low agitation / slow center pour";
+
+      intentionTitle =
+        "凍滴濾泡";
+
+      intentionEn =
+        "Iced Drip Coffee";
+
+      philosophy = `
+        This recipe uses concentrated hot extraction
+        with controlled ice dilution.
+
+        Low agitation preserves clarity while
+        bypass ice tightens texture and sweetness.
+
+        <br><br>
+
+        本配方使用高濃度熱萃取配合冰塊稀釋。
+
+        低擾動保留清晰度，
+        冰塊後段稀釋令口感更緊緻、甜感更集中。
+      `;
+
+      pours = [
+
+        {
+          title: "Bloom Saturation",
+          amount: "40g",
+          timing: "0:00 – 0:35",
+          note: "Gentle bloom with minimal agitation."
+        },
+
+        {
+          title: "Main Extraction",
+          amount: "80g",
+          timing: "0:35 – 1:05",
+          note: "Slow center pour."
+        },
+
+        {
+          title: "Finish Pour",
+          amount: "40g",
+          timing: "1:05 – 1:25",
+          note: "Maintain stable bed dynamics."
+        }
+
+      ];
+
+      extraRecipeItems = `
+        <div class="recipe-item">
+          <h3>咖啡粉量 · Coffee Dose</h3>
+          <p>16g</p>
+        </div>
+
+        <div class="recipe-item">
+          <h3>熱水量 · Brew Water</h3>
+          <p>160g</p>
+        </div>
+
+        <div class="recipe-item">
+          <h3>冰量 · Ice</h3>
+          <p>100g</p>
+        </div>
+
+        <div class="recipe-item">
+          <h3>最終飲品量 · Final Beverage</h3>
+          <p>260g</p>
+        </div>
+      `;
   }
 
   // 研磨度中英對照
@@ -187,13 +270,7 @@ function renderFilterRecipe(coffee, intention) {
     `;
   }).join("");
 
-  // 計算 bypass 水量（只有 clarity-sweet 先有）
-  let bypassAmount = 0;
-  if (intention === "clarity-sweet") {
-    bypassAmount = 30;
-  }
-
-  // 製作 bypass HTML
+  // 製作 bypass HTML（只有 clarity-sweet 先有）
   const bypassHTML = bypassAmount > 0 ? `
     <div class="pour-step" style="background: #e8efe2;">
       <div class="pour-title">✨ Bypass 溝水 · Bypass</div>
