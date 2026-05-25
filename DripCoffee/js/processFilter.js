@@ -57,21 +57,8 @@ function filterCoffeesByProcess(coffees, brewTypeValue, processValue) {
 
 // 拎咖啡豆嘅 display name（用 fullName）
 function getCoffeeDisplayName(coffee) {
-  const countryEmojis = {
-    "Bolivia": "🇧🇴",
-    "Colombia": "🇨🇴",
-    "Costa Rica": "🇨🇷",
-    "El Salvador": "🇸🇻",
-    "Ethiopia": "🇪🇹",
-    "Panama": "🇵🇦",
-    "Peru": "🇵🇪",
-    "Rwanda": "🇷🇼",
-    "Brazil": "🇧🇷",
-    "Blend": "🌍"
-  };
-
-  const emoji = countryEmojis[coffee.origin] || "📍";
-  return `${emoji} ${coffee.shortName || coffee.fullName}`;
+  // 直接顯示：Panama - Elida Natural #44
+  return `${coffee.origin} - ${coffee.shortName}`;
 }
 
 // 更新 coffeeSelect 嘅 options
