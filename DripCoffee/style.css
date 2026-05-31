@@ -1,0 +1,326 @@
+/* ========================================
+   Green Door Coffee
+   style.css
+   Modern Coffee Philosophy UI
+======================================== */
+
+/* ========================================
+   ROOT
+======================================== */
+
+:root {
+  --bg: #f5f2eb;
+  --card: #ffffff;
+  --soft: #f1eee8;
+  --border: #e5dfd3;
+  --text: #2a2722;
+  --muted: #7d766d;
+  --accent: #9c8b6b;
+  --highlight: #ece6d8;
+  --radius: 18px;
+  --shadow:
+    0 4px 12px rgba(0,0,0,0.03);
+}
+
+/* ========================================
+   RESET
+======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "Helvetica Neue",
+    sans-serif;
+  line-height: 1.7;
+  padding: 40px 20px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========================================
+   LAYOUT
+======================================== */
+
+.container {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.hero {
+  margin-bottom: 40px;
+}
+
+.hero-title {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+}
+
+.hero-subtitle {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 680px;
+}
+
+/* ========================================
+   CONTROL PANEL
+======================================== */
+
+.control-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow);
+}
+
+.control-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.field select {
+  appearance: none;
+  background: var(--soft);
+  border: 1px solid transparent;
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: var(--text);
+  transition: 0.2s ease;
+}
+
+.field select:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: #fff;
+}
+
+/* ========================================
+   RESULT
+======================================== */
+
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.result-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+/* ========================================
+   COFFEE HEADER
+======================================== */
+
+.coffee-name {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.coffee-meta {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+/* ========================================
+   TAGS
+======================================== */
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  background: var(--soft);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 12px;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+
+/* ========================================
+   SECTION TITLES
+======================================== */
+
+.section-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+/* ========================================
+   ANALYSIS
+======================================== */
+
+.analysis {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.analysis-highlight {
+  margin-top: 18px;
+  padding-left: 18px;
+  border-left: 3px solid var(--accent);
+  color: var(--text);
+}
+
+/* ========================================
+   RECIPE GRID
+======================================== */
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.recipe-item {
+  background: var(--soft);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.recipe-item h3 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.recipe-item p {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* ========================================
+   POUR STEPS
+======================================== */
+
+.pour-step {
+  background: var(--soft);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.pour-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.pour-detail {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+/* ========================================
+   PLACEHOLDER
+======================================== */
+
+.placeholder {
+  background: var(--card);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* ========================================
+   NAVIGATION
+======================================== */
+
+.top-nav {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.top-nav a {
+  text-decoration: none;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.top-nav a:hover {
+  background: var(--soft);
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 640px) {
+  body {
+    padding: 20px 14px;
+  }
+  .hero-title {
+    font-size: 28px;
+  }
+  .control-panel,
+  .result-section {
+    padding: 22px;
+  }
+  .recipe-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,57 +1,88 @@
+<!-- ========================================
+Green Door Coffee
+index.html
+主頁：Hand Brew Philosophy
+======================================== -->
+
 <!DOCTYPE html>
 <html lang="zh-HK">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Green Door Coffee · Brewing Philosophy</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Green Door Coffee</title>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<div class="gdc-brew-app">
-
+  <!-- =====================================
+  HEADER
+  ===================================== -->
   <div class="container">
-
-    <!-- HERO -->
-    <header class="hero">
+    <div class="hero">
       <p class="eyebrow">Green Door Coffee</p>
       <h1>沖煮哲學 · Brewing Philosophy</h1>
-      <p class="hero-text">一套圍繞萃取平衡、水流行為與咖啡本質設計的沖煮系統。A coffee brewing system designed around extraction balance, flow behaviour, and coffee character.</p>
-    </header>
+      <p class="hero-subtitle">
+        一套圍繞萃取平衡、水流行為與咖啡本質設計的沖煮系統。
+        <br>
+        A coffee brewing system designed around extraction balance, flow behaviour, and coffee character.
+      </p>
+    </div>
+  </div>
 
-    <!-- FORM（冇 Generate 按鈕） -->
-    <section class="card">
+  <!-- =====================================
+  NAVIGATION
+  ===================================== -->
+  <!--
+  <nav class="top-nav">
 
-      <!-- Brew Type -->
+    <a href="index.html" class="active">手沖沖煮哲學</a>
+    <a href="https://greendoorcoffee.com/espresso-recipe/">Espresso Recipe</a>
+    <a href="signature.html">
+      手沖特色飲品
+    </a>
+
+  </nav>
+  -->
+  <!-- =====================================
+  MAIN CONTENT
+  ===================================== -->
+  <main class="container">
+
+    <!-- =====================================
+    CONTROLS
+    ===================================== -->
+    <section class="control-panel">
+
+      <!-- 處理法 -->
       <div class="field">
-        <label>沖煮方式 · Brewing Type</label>
-        <select id="brewType">
-          <option value="filter">濾泡／手沖 · Filter / Pour Over</option>
-          <option value="espresso">濃縮咖啡 · Espresso</option>
-        </select>
-      </div>
 
-      <!-- Process Filter -->
-      <div class="field">
         <label>處理法 · Process</label>
+
         <select id="processFilter">
           <option value="all">全部 · All Processes</option>
-          <option value="washed">水洗 · Washed</option>
-          <option value="natural">日曬 · Natural</option>
-          <option value="honey">蜜處理 · Honey / Passion / Pink</option>
-          <option value="anaerobic">厭氧 · Anaerobic</option>
+          <option value="washed">Washed</option>
+          <option value="natural">Natural</option>
+          <option value="honey">Honey</option>
+          <option value="anaerobic">Anaerobic</option>
         </select>
+
       </div>
 
-      <!-- Coffee Select -->
+      <!-- 咖啡豆 -->
       <div class="field">
-        <label>選擇咖啡豆 · Select Coffee</label>
+        <label>咖啡豆 · Coffee</label>
         <select id="coffeeSelect"></select>
       </div>
 
-      <!-- Intention -->
+      <!-- 沖煮意向 -->
       <div class="field">
+
         <label>沖煮意向 · Brewing Intention</label>
+
         <select id="flavorSelect">
           <option value="clarity">花香／茶感 · Floral / Tea-like Clarity</option>
           <option value="balanced">平衡甜感 · Balanced Sweetness</option>
@@ -64,22 +95,31 @@
 
     </section>
 
-    <!-- RESULT -->
-    <section class="result-card">
+    <!-- =====================================
+    RESULT
+    ===================================== -->
+    <section class="result-wrapper">
+
       <div id="resultPlaceholder" class="placeholder">
-        選擇咖啡豆以生成沖煮建議。<br>Select a coffee to generate a brewing recommendation.
+
+        Select a coffee and brewing intention
+        to explore brewing philosophy.
+
       </div>
-      <div id="result" aria-live="polite"></div>
+
+      <div id="result"></div>
+
     </section>
 
-  </div>
+  </main>
 
-</div>
-
-<script src="js/data.js"></script>
-<script src="js/processFilter.js"></script>
-<script src="js/recipeRenderer.js"></script>
-<script src="js/app.js"></script>
+  <!-- =====================================
+  SCRIPTS
+  ===================================== -->
+  <script src="data.js"></script>
+  <script src="processFilter.js"></script>
+  <script src="recipeRenderer.js"></script>
+  <script src="app.js"></script>
 
 </body>
 </html>
